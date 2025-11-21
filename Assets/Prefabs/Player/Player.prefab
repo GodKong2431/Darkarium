@@ -33,8 +33,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.285, y: -0.434, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1329656819792502968, guid: a62ceff272f17084782429534a210c63, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Graph: {fileID: -2565231349743121824, guid: 6cd760175cf0d574a87254a355591111, type: 2}
   m_BlackboardVariableOverridesList:
   - rid: 2036751172378296473
-  - rid: 2036751172378296474
+  - rid: 2036751208632287468
   m_OriginalGraph: {fileID: -2565231349743121824, guid: 6cd760175cf0d574a87254a355591111, type: 2}
   m_IsInitialised: 0
   m_IsStarted: 0
@@ -224,12 +224,12 @@ MonoBehaviour:
           m_Value1: 0
         Name: Self
         m_Value: {fileID: 169606159176880891}
-    - rid: 2036751172378296474
+    - rid: 2036751208632287468
       type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
-          m_Value0: 3060404674241428920
-          m_Value1: 492241723412090368
+          m_Value0: 1019025231620481575
+          m_Value1: 13629262473437822870
         Name: PlayerAnim
         m_Value: {fileID: 5746115590146235469}
 --- !u!114 &1510288451870176029

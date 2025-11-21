@@ -2,7 +2,7 @@ using System;
 
 public class PlayerPresenter
 {
-    private PlayerView _playerView;
+    public PlayerView PlayerView { get; private set; }
     public PlayerModel PlayerModel { get; private set; }
 
     public float GetMoveSpeed() => PlayerModel.MoveSpeed;
@@ -15,26 +15,15 @@ public class PlayerPresenter
 
     public PlayerPresenter(PlayerView playerView, PlayerModel playerModel)
     {
-        _playerView = playerView;
+        PlayerView = playerView;
         PlayerModel = playerModel;
         PlayerSystems.RegisterPlayer(this);
     }
     
 
 
-    public void ChangeLookDir(float x, float y)
+    public void ChangeLookDir(DirType dir)
     {
-        DirType dir;
-
-        if (Math.Abs(x) > Math.Abs(y))
-        {
-            dir = x > 0 ? DirType.Right : DirType.Left;
-        }
-        else
-        {
-            dir = y > 0 ? DirType.Back : DirType.Front;
-        }
-
         PlayerModel.SetLookDir(dir);
     }
 

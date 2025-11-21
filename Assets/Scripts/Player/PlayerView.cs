@@ -36,7 +36,6 @@ public class PlayerView : MonoBehaviour
         _move.performed += (ctx) =>
         {
             MoveInput = ctx.ReadValue<Vector2>();
-            _playerPresenter.ChangeLookDir(MoveInput.x, MoveInput.y);
         };
 
         _move.canceled += (ctx) =>
