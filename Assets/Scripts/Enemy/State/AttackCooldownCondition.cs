@@ -14,7 +14,7 @@ public partial class AttackCooldownCondition : Condition
     public override bool IsTrue()
     {
         if (Time.time - lastAttackTime < Cooldown)
-            return false;  // 쿨타임 안됐으면 공격 안함
+            return false;
 
 
         lastAttackTime = Time.time;

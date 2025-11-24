@@ -531,6 +531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792296225}
   - component: {fileID: 792296226}
+  - component: {fileID: 792296227}
   m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Untagged
@@ -583,12 +584,24 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.3
+--- !u!114 &792296227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792296224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf148e2c27cbbf4cb20a9dcf325ccd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackColllider
 --- !u!1001 &925678488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21998,6 +22011,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7686190323343016243, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
+      propertyPath: _attackColliderObj
+      value: 
+      objectReference: {fileID: 792296224}
     - target: {fileID: 8584498214474683394, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
       propertyPath: 'managedReferences[2036751278380941658]'
       value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.Animator,

@@ -17,9 +17,9 @@ public class PlayerView : MonoBehaviour
 
     public Vector2 MoveInput {  get; private set; }
 
-    Animator _animator;
+    Animator _anim;
 
-    Coroutine hitCoroutine;
+    private Coroutine _hitCoroutine = null;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class PlayerView : MonoBehaviour
     private void ComponentInit()
     {
         _playerRigid = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _anim = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -58,6 +58,11 @@ public class PlayerView : MonoBehaviour
 
         _attack.started += (ctx) =>
         {
+            if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+            {
+                Debug.Log("Already attacking, cannot attack again now.");
+                return;
+            }
             StartAttack();
         };
     }
@@ -74,7 +79,6 @@ public class PlayerView : MonoBehaviour
         _playerPresenter.ChangeAttack(true);
         StartCoroutine(AttackCoroutine());
     }
-
     private IEnumerator AttackCoroutine()
     {
         _attackColliderObj.SetActive(true);
@@ -86,18 +90,18 @@ public class PlayerView : MonoBehaviour
 
     public void StartHit(int damage)
     {
-        if(hitCoroutine != null) return;
+        if(_hitCoroutine != null) return;
         _playerPresenter.ChangeCurrentHP(damage);
-        hitCoroutine = StartCoroutine(HitCoroutine(damage));
+        _hitCoroutine = StartCoroutine(HitCoroutine(damage));
     }
 
     private IEnumerator HitCoroutine(int damage)
     {
         Debug.Log("Player took " + damage + " damage, current HP: " + _playerPresenter.GetHealth());
         _playerPresenter.ChangeHit(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         _playerPresenter.ChangeHit(false);
-        hitCoroutine = null;
+        _hitCoroutine = null;
     }
 }
 
