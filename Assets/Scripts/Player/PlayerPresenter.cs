@@ -6,8 +6,7 @@ public class PlayerPresenter
     public PlayerModel PlayerModel { get; private set; }
 
     public float GetMoveSpeed() => PlayerModel.MoveSpeed;
-    public PlayerStateType GetState() => PlayerModel.State;
-    public DirType GetLookDir() => PlayerModel.Dir;
+    public int GetDamage() => PlayerModel.Damage;
     public bool GetIsMove() => PlayerModel.IsMove;
     public bool GetIsAttack() => PlayerModel.IsAttack;
     public bool GetIsHit() => PlayerModel.IsHit;
@@ -19,18 +18,7 @@ public class PlayerPresenter
         PlayerModel = playerModel;
         PlayerSystems.RegisterPlayer(this);
     }
-    
-
-
-    public void ChangeLookDir(DirType dir)
-    {
-        PlayerModel.SetLookDir(dir);
-    }
-
-    public void ChangeState(PlayerStateType state)
-    {
-        PlayerModel.SetState(state);
-    }
+   
 
     public void ChangeIsMove(bool isMove)
     {
@@ -45,5 +33,10 @@ public class PlayerPresenter
     public void ChangeHit(bool isHit)
     {
         PlayerModel.SetIsHit(isHit);
+    }
+
+    public void ChangeCurrentHP(int damage)
+    {
+        PlayerModel.SetHP(-damage);
     }
 }

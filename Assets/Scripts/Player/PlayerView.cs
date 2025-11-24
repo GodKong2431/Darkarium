@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,9 @@ public class PlayerView : MonoBehaviour
 {
     [Header("PlayerPresenter")]
     [SerializeField] private PlayerPresenter _playerPresenter;
+
+    [Header("Attack Collider")]
+    [SerializeField] private GameObject _attackColliderObj;
 
     private InputAction _move;
     private InputAction _attack;
@@ -19,14 +23,20 @@ public class PlayerView : MonoBehaviour
     {
         _playerPresenter = new PlayerPresenter(this, new PlayerModel());
         ActionInit();
-        _playerRigid = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        ComponentInit();
+        _attackColliderObj.SetActive(false);
     }
     private void ActionInit()
     {
         _move = InputSystem.actions["Move"];
         _attack = InputSystem.actions["Attack"];
     }
+    private void ComponentInit()
+    {
+        _playerRigid = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+    }
+
     private void OnEnable()
     {
         _move.started += (ctx) =>
@@ -46,12 +56,34 @@ public class PlayerView : MonoBehaviour
 
         _attack.started += (ctx) =>
         {
-            _playerPresenter.ChangeAttack(true);
+            StartAttack();
         };
     }
 
     private void Update()
     {
         _playerRigid.linearVelocity = MoveInput * _playerPresenter.GetMoveSpeed();
+    }
+
+    private void StartAttack()
+    {
+        if (_playerPresenter.GetIsAttack()) return;
+
+        _playerPresenter.ChangeAttack(true);
+        StartCoroutine(AttackCoroutine());
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        _attackColliderObj.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        _attackColliderObj.SetActive(false);
+        _playerPresenter.ChangeAttack(false);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        _playerPresenter.ChangeHit(true);
+        _playerPresenter.ChangeCurrentHP(damage);
     }
 }

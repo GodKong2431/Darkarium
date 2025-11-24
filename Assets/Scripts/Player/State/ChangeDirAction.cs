@@ -12,8 +12,8 @@ public partial class ChangeDirAction : Action
     [SerializeReference] public BlackboardVariable<DirType> Player;
     [SerializeReference] public BlackboardVariable<Animator> Anim;
 
-    DirType _dir;
-    PlayerPresenter _player => PlayerSystems.Player;
+
+
     Vector2 _moveInput => PlayerSystems.Player.PlayerView.MoveInput;
     protected override Status OnStart()
     {
@@ -25,15 +25,12 @@ public partial class ChangeDirAction : Action
         if (MathF.Abs(_moveInput.x) > MathF.Abs(_moveInput.y))
         {
             Player.Value = _moveInput.x > 0 ? DirType.Right : DirType.Left;
-            _dir = _moveInput.x > 0 ? DirType.Right : DirType.Left;
         }
         else
         {
             Player.Value = _moveInput.y > 0 ? DirType.Back : DirType.Front;
-            _dir = _moveInput.y > 0 ? DirType.Back : DirType.Front;
         }
 
-        _player.ChangeLookDir(_dir);
         return Status.Running;
     }
 

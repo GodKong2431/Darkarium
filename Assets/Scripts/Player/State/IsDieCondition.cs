@@ -3,8 +3,8 @@ using Unity.Behavior;
 using UnityEngine;
 
 [Serializable, Unity.Properties.GeneratePropertyBag]
-[Condition(name: "IsDead", story: "IsDead", category: "Conditions", id: "d0bf37c9e00454f9e70beee52adb1c49")]
-public partial class IsDeadCondition : Condition
+[Condition(name: "IsDie", story: "Is Die Check", category: "Conditions", id: "01a2dc8c5fcd6526573897c4392f9e18")]
+public partial class IsDieCondition : Condition
 {
 
     public override bool IsTrue()
@@ -13,7 +13,7 @@ public partial class IsDeadCondition : Condition
         {
             return true;
         }
-        return true;
+        return false;
     }
 
     public override void OnStart()

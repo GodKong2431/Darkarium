@@ -3,16 +3,23 @@ using System;
 public class PlayerModel
 {
     public int MaxHP { get; private set; } = 100;
-    public int CurrentHP { get; private set; }
-    public float MoveSpeed { get; private set; } = 5.0f;
+    private int _currentHP;
 
-    public DirType Dir { get; private set; } = DirType.Front;
-    public PlayerStateType State { get; private set; } = PlayerStateType.Idle;
+    public int CurrentHP
+    {
+        get => _currentHP;
+        private set
+        {
+            _currentHP = Math.Clamp(value, 0, MaxHP);
+            OnHPChanged?.Invoke(_currentHP);
+        }
+    }
+
+    public float MoveSpeed { get; private set; } = 5.0f;
     public bool IsMove { get; private set; } = false;
     public bool IsAttack { get; private set; } = false;
     public bool IsHit { get; private set; } = false;
-
-    private int _attackPower = 10;
+    public int Damage { get; private set; } = 20;
 
     private event Action<int> OnHPChanged;
 
@@ -21,25 +28,22 @@ public class PlayerModel
         CurrentHP = MaxHP;
     }
 
-    public void SetState(PlayerStateType state) 
-    { 
-        State = state; 
-    }
-    public void SetLookDir(DirType dir)
-    {
-        Dir = dir;
-    }
 
+
+
+
+    public void SetHP(int hp)
+    {
+        CurrentHP += hp;
+    }
     public void SetIsMove(bool isMove)
     {
         IsMove = isMove;
     }
-
     public void SetIsAttack(bool isAttack)
     {
         IsAttack = isAttack;
     }
-
     public void SetIsHit(bool isHit)
     {
         IsHit = isHit;
