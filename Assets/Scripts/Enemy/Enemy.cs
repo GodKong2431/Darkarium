@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
 
     private Coroutine _hitCoroutine;
     private Animator _anim;
+
+    public bool isDead => currentHP <= 0;
+
+
     private void Awake()
     {
         _attackColliderObj.SetActive(false);

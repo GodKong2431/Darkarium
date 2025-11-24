@@ -13,7 +13,7 @@ public partial class IsHitCondition : Condition
         {
             return false;
         }
-        PlayerSystems.Player.ChangeHit(false);
+        PlayerSystems.Player.ChangeIsHit(false);
         return true;
     }
 

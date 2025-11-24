@@ -13,7 +13,7 @@ public partial class IsAttackCondition : Condition
         {
             return false;
         }
-        PlayerSystems.Player.ChangeAttack(false);
+        PlayerSystems.Player.ChangeIsAttack(false);
         return true;
     }
 

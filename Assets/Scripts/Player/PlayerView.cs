@@ -28,6 +28,12 @@ public class PlayerView : MonoBehaviour
         ComponentInit();
         _attackColliderObj.SetActive(false);
     }
+
+    private void Start()
+    {
+        _playerPresenter.InitPlayerStats();
+    }
+
     private void ActionInit()
     {
         _move = InputSystem.actions["Move"];
@@ -58,12 +64,9 @@ public class PlayerView : MonoBehaviour
 
         _attack.started += (ctx) =>
         {
-            if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
-                Debug.Log("Already attacking, cannot attack again now.");
-                return;
-            }
-            StartAttack();
+            if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) return;
+            if(_playerPresenter.GetCurrentStamina() >= 10)
+                StartAttack();
         };
     }
 
@@ -76,7 +79,8 @@ public class PlayerView : MonoBehaviour
     {
         if (_playerPresenter.GetIsAttack()) return;
 
-        _playerPresenter.ChangeAttack(true);
+        _playerPresenter.ChangeIsAttack(true);
+        _playerPresenter.ChangeCurrentStamina(-10);
         StartCoroutine(AttackCoroutine());
     }
     private IEnumerator AttackCoroutine()
@@ -84,7 +88,7 @@ public class PlayerView : MonoBehaviour
         _attackColliderObj.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         _attackColliderObj.SetActive(false);
-        _playerPresenter.ChangeAttack(false);
+        _playerPresenter.ChangeIsAttack(false);
     }
 
 
@@ -97,10 +101,10 @@ public class PlayerView : MonoBehaviour
 
     private IEnumerator HitCoroutine(int damage)
     {
-        Debug.Log("Player took " + damage + " damage, current HP: " + _playerPresenter.GetHealth());
-        _playerPresenter.ChangeHit(true);
+        Debug.Log("Player took " + damage + " damage, current HP: " + _playerPresenter.GetCurrentHP());
+        _playerPresenter.ChangeIsHit(true);
         yield return new WaitForSeconds(0.1f);
-        _playerPresenter.ChangeHit(false);
+        _playerPresenter.ChangeIsHit(false);
         _hitCoroutine = null;
     }
 }

@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 119761713}
   - component: {fileID: 119761715}
   - component: {fileID: 119761714}
+  - component: {fileID: 119761716}
   m_Layer: 5
   m_Name: HP
   m_TagString: Untagged
@@ -194,6 +195,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 119761712}
   m_CullTransparentMesh: 1
+--- !u!114 &119761716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119761712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b23416829d4b6ed4ab5fceb9e7c6ce0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHPBar
 --- !u!1 &163863612
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,87 +534,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: -8435245712485981826, guid: 1552e99e489f99146abe450fe10c8836, type: 3}
---- !u!1 &792296224
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 792296225}
-  - component: {fileID: 792296226}
-  - component: {fileID: 792296227}
-  m_Layer: 0
-  m_Name: AttackCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &792296225
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792296224}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3553772793942229356}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &792296226
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792296224}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.3
---- !u!114 &792296227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792296224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cf148e2c27cbbf4cb20a9dcf325ccd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackColllider
 --- !u!1001 &925678488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21120,8 +21052,9 @@ GameObject:
   - component: {fileID: 1118971520}
   - component: {fileID: 1118971522}
   - component: {fileID: 1118971521}
+  - component: {fileID: 1118971523}
   m_Layer: 5
-  m_Name: Mana
+  m_Name: MP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21184,6 +21117,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1118971519}
   m_CullTransparentMesh: 1
+--- !u!114 &1118971523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118971519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdabe7a7a83b79b46ab900d45a60d925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMPBar
 --- !u!1 &1142168039
 GameObject:
   m_ObjectHideFlags: 0
@@ -21760,6 +21705,7 @@ GameObject:
   - component: {fileID: 1774084718}
   - component: {fileID: 1774084720}
   - component: {fileID: 1774084719}
+  - component: {fileID: 1774084721}
   m_Layer: 5
   m_Name: Stamina
   m_TagString: Untagged
@@ -21824,6 +21770,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1774084717}
   m_CullTransparentMesh: 1
+--- !u!114 &1774084721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774084717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89812f9297ead434f91895ebe4fddd41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStaminaBar
 --- !u!1 &2014404368 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 169606159176880891, guid: fc200f44109e4514390df9a515c09480, type: 3}
@@ -21930,11 +21888,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!95 &1160356261133641371 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3804942842378086944, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-  m_PrefabInstance: {fileID: 3553772793942229355}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3553772793942229355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21943,14 +21896,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 882335235249684955, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: -8067998507580681976, guid: 049a51614be573b48882a67a5139008e, type: 3}
-    - target: {fileID: 3804942842378086944, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 9a99dce65eda81740bff14d8c623a3dd, type: 2}
     - target: {fileID: 4001399515841960106, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.74
@@ -21995,72 +21940,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plant1
       objectReference: {fileID: 0}
-    - target: {fileID: 7084218604885940297, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: m_Size.x
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084218604885940297, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: m_Size.y
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084218604885940297, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: m_Offset.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7084218604885940297, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7686190323343016243, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: _attackColliderObj
-      value: 
-      objectReference: {fileID: 792296224}
-    - target: {fileID: 8584498214474683394, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: 'managedReferences[2036751278380941658]'
-      value: 'Unity.Behavior Unity.Behavior.BlackboardVariable`1[[UnityEngine.Animator,
-        UnityEngine.AnimationModule]]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8584498214474683394, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: managedReferences[2036751278380941658].Name
-      value: Plant1Anim
-      objectReference: {fileID: 0}
-    - target: {fileID: 8584498214474683394, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: m_BlackboardVariableOverridesList.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8584498214474683394, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
       propertyPath: managedReferences[2036751237856624994].m_Value
       value: 
       objectReference: {fileID: 2014404368}
-    - target: {fileID: 8584498214474683394, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: managedReferences[2036751278380941658].m_Value
-      value: 
-      objectReference: {fileID: 1160356261133641371}
-    - target: {fileID: 8584498214474683394, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: 'm_BlackboardVariableOverridesList.Array.data[2]'
-      value: 2036751278380941658
-      objectReference: {fileID: 0}
-    - target: {fileID: 8584498214474683394, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: managedReferences[2036751278380941658].GUID.m_Value0
-      value: 13308500770082750784
-      objectReference: {fileID: 0}
-    - target: {fileID: 8584498214474683394, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      propertyPath: managedReferences[2036751278380941658].GUID.m_Value1
-      value: 8185411484392862465
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 4001399515841960106, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 792296225}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
---- !u!4 &3553772793942229356 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4001399515841960106, guid: 561d2b274ea4fc04ebf31e9ade778764, type: 3}
-  m_PrefabInstance: {fileID: 3553772793942229355}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

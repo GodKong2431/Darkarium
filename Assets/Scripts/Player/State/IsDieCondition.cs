@@ -9,7 +9,7 @@ public partial class IsDieCondition : Condition
 
     public override bool IsTrue()
     {
-        if(PlayerSystems.Player.GetHealth() <= 0)
+        if(PlayerSystems.Player.GetCurrentHP() <= 0)
         {
             return true;
         }

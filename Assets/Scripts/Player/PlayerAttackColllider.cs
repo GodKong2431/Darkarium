@@ -8,6 +8,7 @@ public class PlayerAttackColllider : MonoBehaviour
         {
             if (collision.TryGetComponent<Enemy>(out var enemy))
             {
+                if (enemy.isDead) return;
                 enemy.StartHit(PlayerSystems.Player.GetDamage());
             }
             Debug.Log("Enemy hit!");
