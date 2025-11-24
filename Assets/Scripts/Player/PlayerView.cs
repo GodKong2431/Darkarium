@@ -19,6 +19,8 @@ public class PlayerView : MonoBehaviour
 
     Animator _animator;
 
+    Coroutine hitCoroutine;
+
     private void Awake()
     {
         _playerPresenter = new PlayerPresenter(this, new PlayerModel());
@@ -81,9 +83,22 @@ public class PlayerView : MonoBehaviour
         _playerPresenter.ChangeAttack(false);
     }
 
-    public void TakeDamage(int damage)
+
+    public void StartHit(int damage)
     {
-        _playerPresenter.ChangeHit(true);
+        if(hitCoroutine != null) return;
         _playerPresenter.ChangeCurrentHP(damage);
+        hitCoroutine = StartCoroutine(HitCoroutine(damage));
+    }
+
+    private IEnumerator HitCoroutine(int damage)
+    {
+        Debug.Log("Player took " + damage + " damage, current HP: " + _playerPresenter.GetHealth());
+        _playerPresenter.ChangeHit(true);
+        yield return new WaitForSeconds(0.5f);
+        _playerPresenter.ChangeHit(false);
+        hitCoroutine = null;
     }
 }
+
+    

@@ -4,6 +4,8 @@ public class Enemy : MonoBehaviour
 {
     protected int currentHP;
 
+    public int AttackDamage = 15;
+
     public virtual void TakeDamage(int damage)
     {
         currentHP -= damage;
