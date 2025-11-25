@@ -11,20 +11,21 @@ public enum TileType
 public class DungeonGenerator : MonoBehaviour
 {
     [Header("Map Size")]
-    public int width = 100;
-    public int height = 100;
+    [SerializeField] private int _width = 100;
+    [SerializeField] private int _height = 100;
 
     [Header("Cellular Automata")]
-    public int fillPercent = 40;
-    public int smoothTimes = 6;
+    [SerializeField] private int _fillPercent;
+    [SerializeField] private int _smoothTimes;
 
     [Header("Room Cleanup")]
-    public int minRoomSize = 50;
+    [SerializeField] private int _minRoomSize;
 
     [Header("Tilemap")]
-    public Tilemap tilemap;
-    public TileBase wallTile;
-    public TileBase floorTile;
+    [SerializeField] private Tilemap _wallTileMap;
+    [SerializeField] private Tilemap _floorTileMap;
+    [SerializeField] private TileBase _wallTile;
+    [SerializeField] private TileBase _floorTile;
 
     public DungeonData map;
 
@@ -37,10 +38,10 @@ public class DungeonGenerator : MonoBehaviour
     public void GenerateDungeon()
     {
         //초기 맵 생성
-        int[,] map = CellularAutomata.GenerateRandomMap(width, height, fillPercent);
+        int[,] map = CellularAutomata.GenerateRandomMap(_width, _height, _fillPercent);
 
         //지정된 횟수만큼 스무딩 진행
-        for (int i = 0; i < smoothTimes; i++)
+        for (int i = 0; i < _smoothTimes; i++)
             map = CellularAutomata.Smooth(map);
 
         //형성된 방을 추출
@@ -49,7 +50,7 @@ public class DungeonGenerator : MonoBehaviour
         //방의 크기가 지정된 값보다 낮으면 타일을 모두 벽으로 변경
         foreach (List<Vector2Int> room in rooms)
         {
-            if (room.Count < minRoomSize)
+            if (room.Count < _minRoomSize)
             {
                 foreach (Vector2Int t in room)
                     map[t.x, t.y] = 1;
@@ -62,7 +63,9 @@ public class DungeonGenerator : MonoBehaviour
         //방끼리 통로로 연결
         CorridorConnector.ConnectRooms(map, rooms);
 
-        map = CellularAutomata.Smooth(map);
+        //마지막 스무딩
+        for(int i = 0; i < 5; i++)
+            map = CellularAutomata.Smooth(map);
 
 
         //만들어진 맵과 방 정보를 DungeonData로 저장
@@ -74,7 +77,8 @@ public class DungeonGenerator : MonoBehaviour
 
     private void RenderTilemap()
     {
-        tilemap.ClearAllTiles();
+        _wallTileMap.ClearAllTiles();
+        _floorTileMap.ClearAllTiles();
 
         int[,] map = this.map.Map;
         int w = map.GetLength(0);
@@ -84,8 +88,16 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int y = 0; y < h; y++)
             {
-                TileBase tile = map[x, y] == 1 ? wallTile : floorTile;
-                tilemap.SetTile(new Vector3Int(x, y, 0), tile);
+                if(map[x, y] == 0)
+                {
+                    _floorTileMap.SetTile(new Vector3Int(x, y, 0), _floorTile);
+                }
+                if(map[x, y] == 1)
+                {
+                    _wallTileMap.SetTile(new Vector3Int(x, y, 0), _wallTile);
+                }
+                //TileBase tile = map[x, y] == 1 ? _wallTile : _floorTile;
+                //_wallTileMap.SetTile(new Vector3Int(x, y, 0), tile);
             }
         }
     }

@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class MinimapGenerator : MonoBehaviour
 {
-    public DungeonGenerator dungeon;    // 너가 만든 CA+타일맵 생성 코드
-    public RawImage minimapImage;       // UI에 표시할 RawImage
+    public DungeonGenerator dungeon;
+    public RawImage minimapImage;
     public Color floorColor = Color.white;
     public Color wallColor = Color.black;
 
@@ -18,7 +18,7 @@ public class MinimapGenerator : MonoBehaviour
 
     public void GenerateMinimap()
     {
-        map = dungeon.map.Map;  // 생성된 CA 맵 가져오기
+        map = dungeon.map.Map;
         int width = map.GetLength(0);
         int height = map.GetLength(1);
 
