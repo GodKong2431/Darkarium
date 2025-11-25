@@ -10,7 +10,7 @@ public static class RegionFinder
     };
 
     /// <summary>
-    /// 
+    /// 형성된 방을 찾아오는 메서드
     /// </summary>
     /// <param name="map">스무딩 진행된 맵</param>
     /// <param name="tileType">찾을 타일의 타입</param>

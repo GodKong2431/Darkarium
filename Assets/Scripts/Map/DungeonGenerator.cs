@@ -33,7 +33,6 @@ public class DungeonGenerator : MonoBehaviour
     {
         GenerateDungeon();
     }
-
     
     public void GenerateDungeon()
     {
