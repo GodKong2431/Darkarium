@@ -80,7 +80,4 @@ public class PlayerModel
     {
         CurrentStamina += stamina;
     }
-
-
-    
 }

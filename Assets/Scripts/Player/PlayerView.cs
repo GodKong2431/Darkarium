@@ -1,25 +1,27 @@
 using System.Collections;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerView : MonoBehaviour
 {
-    [Header("PlayerPresenter")]
-    [SerializeField] private PlayerPresenter _playerPresenter;
+    
 
     [Header("Attack Collider")]
     [SerializeField] private GameObject _attackColliderObj;
 
+    [Header("Player Stats")]
+    [SerializeField] private float _rezenStaminaRate = 3f;
+
+    private PlayerPresenter _playerPresenter;
     private InputAction _move;
     private InputAction _attack;
-
     private Rigidbody2D _playerRigid;
-
     public Vector2 MoveInput {  get; private set; }
-
-    Animator _anim;
-
+    private Animator _anim;
     private Coroutine _hitCoroutine = null;
+
+    private WaitForSeconds _staminaRezenWait => new WaitForSeconds(_rezenStaminaRate);
 
     private void Awake()
     {
@@ -28,12 +30,12 @@ public class PlayerView : MonoBehaviour
         ComponentInit();
         _attackColliderObj.SetActive(false);
     }
-
     private void Start()
     {
         _playerPresenter.InitPlayerStats();
-    }
 
+        StartCoroutine(StaminaRezenCoroutine());
+    }
     private void ActionInit()
     {
         _move = InputSystem.actions["Move"];
@@ -55,13 +57,11 @@ public class PlayerView : MonoBehaviour
         {
             MoveInput = ctx.ReadValue<Vector2>();
         };
-
         _move.canceled += (ctx) =>
         {
             MoveInput = Vector2.zero;
             _playerPresenter.ChangeIsMove(false);
         };
-
         _attack.started += (ctx) =>
         {
             if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) return;
@@ -90,15 +90,12 @@ public class PlayerView : MonoBehaviour
         _attackColliderObj.SetActive(false);
         _playerPresenter.ChangeIsAttack(false);
     }
-
-
     public void StartHit(int damage)
     {
         if(_hitCoroutine != null) return;
         _playerPresenter.ChangeCurrentHP(damage);
         _hitCoroutine = StartCoroutine(HitCoroutine(damage));
     }
-
     private IEnumerator HitCoroutine(int damage)
     {
         Debug.Log("Player took " + damage + " damage, current HP: " + _playerPresenter.GetCurrentHP());
@@ -106,6 +103,14 @@ public class PlayerView : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         _playerPresenter.ChangeIsHit(false);
         _hitCoroutine = null;
+    }
+    private IEnumerator StaminaRezenCoroutine()
+    {
+        while (true)
+        {
+            _playerPresenter.StaminaRezen(5);
+            yield return _staminaRezenWait;
+        }
     }
 }
 

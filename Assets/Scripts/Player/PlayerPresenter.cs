@@ -53,4 +53,13 @@ public class PlayerPresenter
     {
         PlayerModel.InitStats();
     }
+
+
+    public void StaminaRezen(int Rezen)
+    {
+        if (PlayerModel.CurrentStamina < PlayerModel.MaxStamina)
+        {
+            PlayerModel.SetStamina(Rezen);
+        }
+    }
 }
