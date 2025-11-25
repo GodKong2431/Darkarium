@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Behavior;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -8,19 +9,28 @@ public class Enemy : MonoBehaviour
     public int AttackDamage;
 
     [SerializeField] private GameObject _attackColliderObj;
-
     public GameObject attackCollider => _attackColliderObj;
 
     private Coroutine _hitCoroutine;
     private Animator _anim;
+
+    private BehaviorGraphAgent _ai;
 
     public bool isDead => currentHP <= 0;
 
 
     private void Awake()
     {
+        
+        
         _attackColliderObj.SetActive(false);
         TryGetComponent<Animator>(out _anim);
+    }
+
+    private void Start()
+    {
+        _ai = GetComponent<BehaviorGraphAgent>();
+        _ai.BlackboardReference.SetVariableValue("Player", GameManager.Instance.Player);
     }
 
     public void StartHit(int damage)

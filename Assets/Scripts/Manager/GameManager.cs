@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 
     public bool IsTimePaused { get; private set; } = false;
     public Canvas CurrentCanvas { get; private set; } = null;
+    [SerializeField] public GameObject Player;
 
     public GameManager()
     {

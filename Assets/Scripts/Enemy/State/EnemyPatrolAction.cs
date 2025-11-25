@@ -17,7 +17,8 @@ public partial class EnemyPatrolAction : Action
     Vector3 target;
     protected override Status OnStart()
     {
-        target = new Vector2(
+        target = Self.Value.transform.position;
+        target += new Vector3(
             UnityEngine.Random.Range(-RandomPos, RandomPos),
             UnityEngine.Random.Range(-RandomPos, RandomPos)
             );

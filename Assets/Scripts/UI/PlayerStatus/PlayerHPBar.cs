@@ -23,7 +23,5 @@ public class PlayerHPBar : MonoBehaviour
     private void UpdateHPUI(int hp)
     {
         _hpBar.fillAmount = hp / (float)PlayerSystems.Player.GetMaxHP();
-
-        Debug.Log("Player HP changed to: " + hp);
     }
 }
