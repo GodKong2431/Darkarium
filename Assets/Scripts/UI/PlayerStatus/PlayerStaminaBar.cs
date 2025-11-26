@@ -23,7 +23,5 @@ public class PlayerStaminaBar : MonoBehaviour
     private void UpdateStaminaUI(int stamina)
     {
         _staminaBar.fillAmount = stamina / (float)PlayerSystems.Player.GetMaxStamina();
-
-        Debug.Log("Player Stamina changed to: " + stamina);
     }
 }

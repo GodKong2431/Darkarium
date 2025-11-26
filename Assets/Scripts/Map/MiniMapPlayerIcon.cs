@@ -6,7 +6,6 @@ public class MinimapPlayerIcon : MonoBehaviour
 
     [SerializeField] private RectTransform playerIcon;
     [SerializeField] private RawImage minimapImage;
-    [SerializeField] private Transform player;
     [SerializeField] private DungeonGenerator dungeon;
 
     private int width;
@@ -32,7 +31,7 @@ public class MinimapPlayerIcon : MonoBehaviour
         }
 
         //플레이어 포지션을 저장
-        Vector3 pos = player.position;
+        Vector3 pos = GameManager.Instance.Player.transform.position;
 
         //월드좌표를 내림해서 저장
         int mapX = Mathf.FloorToInt(pos.x);

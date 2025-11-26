@@ -17,6 +17,11 @@ public class PlayerCamera : MonoBehaviour
         _zoom = InputSystem.actions["ScrollWheel"];
     }
 
+    private void Start()
+    {
+        _playerCamera.Target.TrackingTarget = GameManager.Instance.Player.transform;
+    }
+
     private void OnEnable()
     {
         _zoom.performed += ctx => _zoomInput = ctx.ReadValue<Vector2>().y;

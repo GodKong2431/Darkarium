@@ -11,7 +11,7 @@ public class PlayerAttackColllider : MonoBehaviour
                 if (enemy.isDead) return;
                 enemy.StartHit(PlayerSystems.Player.GetDamage());
             }
-            Debug.Log("Enemy hit!");
+
         }
     }
 }

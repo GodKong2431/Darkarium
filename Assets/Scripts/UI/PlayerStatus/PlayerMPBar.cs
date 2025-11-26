@@ -23,7 +23,5 @@ public class PlayerMPBar : MonoBehaviour
     private void UpdateMPUI(int mp)
     {
         _mpBar.fillAmount = mp / (float)PlayerSystems.Player.GetMaxMP();
-
-        Debug.Log("Player MP changed to: " + mp);
     }
 }

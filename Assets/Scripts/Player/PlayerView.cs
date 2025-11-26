@@ -29,6 +29,8 @@ public class PlayerView : MonoBehaviour
         ActionInit();
         ComponentInit();
         _attackColliderObj.SetActive(false);
+
+        DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {

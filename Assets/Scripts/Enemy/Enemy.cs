@@ -50,7 +50,6 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator HitCoroutine(int damage)
     {
-        Debug.Log("Enemy took " + damage + " damage, current HP: " + currentHP);
         _anim.SetTrigger("Hurt");
         yield return new WaitForSeconds(0.5f);
         _hitCoroutine = null;

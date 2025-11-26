@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonManager : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
     [SerializeField] private EnemySpawner _spawner;
 
@@ -9,6 +9,6 @@ public class DungeonManager : MonoBehaviour
 
     void Start()
     {
-        _spawner.Init(_dungeon);
+        _spawner.SpawnStart(_dungeon);
     }
 }

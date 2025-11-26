@@ -4,22 +4,22 @@ using System.Collections.Generic;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private SpawnWaveSO waveData;
+    [SerializeField] private SpawnWaveSO _waveData;
 
     private DungeonData _dungeon;
-    public float startDelay = 2f;
+    [SerializeField] private float _startDelay = 2f;
 
-    public void Init(DungeonGenerator dungeonData)
+    public void SpawnStart(DungeonGenerator dungeonData)
     {
         _dungeon = dungeonData.map;
-        StartCoroutine(SpawnRoutine());
+        StartCoroutine(SpawnCoroutine());
     }
 
-    private IEnumerator SpawnRoutine()
+    private IEnumerator SpawnCoroutine()
     {
-        yield return new WaitForSeconds(startDelay);
+        yield return new WaitForSeconds(_startDelay);
 
-        foreach (var wave in waveData.waves)
+        foreach (var wave in _waveData.waves)
         {
             for (int i = 0; i < wave.count; i++)
             {
@@ -33,17 +33,17 @@ public class EnemySpawner : MonoBehaviour
     {
         if (_dungeon.Rooms.Count == 0) return;
 
-        // 1) 랜덤한 방 선택
+        //랜덤한 방 선택
         int roomIndex = Random.Range(0, _dungeon.Rooms.Count);
         List<Vector2Int> roomTiles = _dungeon.Rooms[roomIndex];
         if (roomTiles.Count == 0) return;
 
-        // 2) 랜덤한 바닥 타일 선택
+        //랜덤한 바닥 타일 선택
         Vector2Int tile = roomTiles[Random.Range(0, roomTiles.Count)];
 
-        Vector3 spawnPos = new Vector3(tile.x + 0.5f, tile.y + 0.5f, 0);
+        Vector3 spawnPos = new Vector3(tile.x, tile.y, 0);
 
-        // 3) 몬스터 생성
+        //몬스터 생성
         Instantiate(monster.prefab, spawnPos, Quaternion.identity);
     }
 }
