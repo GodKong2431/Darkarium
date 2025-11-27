@@ -1,13 +1,15 @@
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private SpawnWaveSO _waveData;
+    [SerializeField] private StageInfoSO _stageInfo;
 
     private DungeonData _dungeon;
     [SerializeField] private float _startDelay = 2f;
+
 
     public void SpawnStart(DungeonGenerator dungeonData)
     {
@@ -19,13 +21,12 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(_startDelay);
 
-        foreach (var wave in _waveData.waves)
+
+        for (int i = 0; i < _stageInfo.spawn.count; i++)
         {
-            for (int i = 0; i < wave.count; i++)
-            {
-                SpawnEnemy(wave.monster);
-                yield return new WaitForSeconds(wave.delay);
-            }
+            SpawnEnemy(_stageInfo.spawn.monster);
+            GameManager.Instance.EnemySpawn();
+            yield return new WaitForSeconds(_stageInfo.spawn.delay);
         }
     }
 
@@ -41,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
         //랜덤한 바닥 타일 선택
         Vector2Int tile = roomTiles[Random.Range(0, roomTiles.Count)];
 
-        Vector3 spawnPos = new Vector3(tile.x, tile.y, 0);
+        Vector3 spawnPos = new Vector3(tile.x + 0.5f, tile.y + 0.5f, 0);
 
         //몬스터 생성
         Instantiate(monster.prefab, spawnPos, Quaternion.identity);

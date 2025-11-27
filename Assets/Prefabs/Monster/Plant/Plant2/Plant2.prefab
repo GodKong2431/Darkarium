@@ -111,7 +111,7 @@ Transform:
   m_GameObject: {fileID: 3841623821195907866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.588866, y: -2.4327474, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -254,11 +254,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3841623821195907866}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc7d1fc1feb041141ad2feac4fb798c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1c62557bf62a0d74493613d69b5f3e18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantsEnemy
-  AttackDamage: 15
-  _attackColliderObj: {fileID: 3137152943763393143}
+  AttackDamage: 20
+  attackRadius: 3
 --- !u!70 &1123446241484558242
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

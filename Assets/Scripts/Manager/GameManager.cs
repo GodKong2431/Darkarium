@@ -1,23 +1,14 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GameManager : MonoBehaviour
+public class GameManager : SingleTon<GameManager>
 {
-    public static GameManager Instance { get; private set; }
 
     public bool IsTimePaused { get; private set; } = false;
     public Canvas CurrentCanvas { get; private set; } = null;
     [SerializeField] public GameObject Player;
 
-    public GameManager()
-    {
-        Instance = this;
-    }
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+    private int _aliveMonsterCount = 0;
 
     public void SetTimeScale(float newTimeScale)
     {
@@ -38,5 +29,53 @@ public class GameManager : MonoBehaviour
     public void SetCurrentCanvas(Canvas canvas = null)
     {
         CurrentCanvas = canvas;
+    }
+
+    public void EnableUI(Transform parent, Transform[] onUI)
+    {
+        foreach (Transform child in parent)
+        {
+            child.gameObject.SetActive(false);
+        }
+        foreach (Transform ui in onUI)
+        {
+            ui.gameObject.SetActive(true);
+        }
+    }
+
+    public void InvokeGameOver()
+    {
+        Invoke("GameOver", 5);
+    }
+
+    private void GameOver()
+    {
+        InputSystem.actions.FindActionMap("Player").Enable();
+        PlayerSystems.Player.ChangeCurrentHP(PlayerSystems.Player.GetMaxHP());
+        PlayerSystems.Player.PlayerView.Anim.SetTrigger("Restart");
+        Player.transform.position = new Vector3(2.5f, 6.5f, 0);
+        SceneChanger.SceneLoad(SceneType.Village);
+
+    }
+
+    public void Victory()
+    {
+        PlayerSystems.Player.ChangeCurrentHP(PlayerSystems.Player.GetMaxHP());
+        Player.transform.position = new Vector3(2.5f, 6.5f, 0);
+        SceneChanger.SceneLoad(SceneType.Village);
+    }
+
+    public void EnemySpawn()
+    {
+        _aliveMonsterCount += 1;
+    }
+
+    public void EnemyDie()
+    {
+        _aliveMonsterCount -= 1;
+        if (_aliveMonsterCount == 0)
+        {
+            Invoke("Victory", 5);
+        }
     }
 }

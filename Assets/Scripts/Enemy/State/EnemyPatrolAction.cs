@@ -14,16 +14,18 @@ public partial class EnemyPatrolAction : Action
     [SerializeReference] public BlackboardVariable<int> MoveSpeed;
     [SerializeReference] public BlackboardVariable<DirType> Dir;
     [SerializeReference] public BlackboardVariable<Animator> Anim;
-    Vector3 target;
+    Vector3 _target;
+    float _starttime;
     protected override Status OnStart()
     {
-        target = Self.Value.transform.position;
-        target += new Vector3(
+        _starttime = Time.time;
+        _target = Self.Value.transform.position;
+        _target += new Vector3(
             UnityEngine.Random.Range(-RandomPos, RandomPos),
             UnityEngine.Random.Range(-RandomPos, RandomPos)
             );
 
-        Vector2 dir = target - Self.Value.transform.position;
+        Vector2 dir = _target - Self.Value.transform.position;
 
         if (MathF.Abs(dir.x) > MathF.Abs(dir.y))
         {
@@ -38,7 +40,10 @@ public partial class EnemyPatrolAction : Action
     }
     protected override Status OnUpdate()
     {
-        Self.Value.transform.position = Vector3.MoveTowards(Self.Value.transform.position, target, MoveSpeed.Value * Time.deltaTime);
+        if(Time.time - _starttime > 3)
+            return Status.Success;
+
+        Self.Value.transform.position = Vector3.MoveTowards(Self.Value.transform.position, _target, MoveSpeed.Value * Time.deltaTime);
 
         Anim.Value.SetFloat("IWR", 0.5f);
         switch (Dir.Value)
@@ -57,7 +62,7 @@ public partial class EnemyPatrolAction : Action
                 break;
         }
 
-        if (Self.Value.transform.position == target)
+        if (Self.Value.transform.position == _target)
         {
             return Status.Success;
         }

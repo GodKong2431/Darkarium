@@ -40,8 +40,16 @@ public class PlayerModel
         }
     }
 
-
-
+    private int _gold = 100;
+    public int Gold 
+    { 
+        get => _gold; 
+        private set
+        {
+            _gold = value;
+            EventBus.Trigger<int>(EventType.PlayerGoldChanged, _gold);
+        }
+    }
     public float MoveSpeed { get; private set; } = 5.0f;
     public bool IsMove { get; private set; } = false;
     public bool IsAttack { get; private set; } = false;
@@ -79,5 +87,26 @@ public class PlayerModel
     public void SetStamina(int stamina)
     {
         CurrentStamina += stamina;
+    }
+
+    public void SetMaxHP(int hp)
+    {
+        MaxHP += hp;
+        CurrentHP = MaxHP;
+    }
+    public void SetMaxStamina(int stamina)
+    {
+        MaxStamina += stamina;
+        CurrentStamina = MaxStamina;
+    }
+    public void SetDamage(int damage)
+    {
+        Damage += damage;
+    }
+
+
+    public void SetGold(int gold)
+    {
+        Gold += gold;
     }
 }

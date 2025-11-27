@@ -16,6 +16,7 @@ public class PlayerPresenter
     public int GetCurrentMP() => PlayerModel.CurrentMP;
     public int GetMaxStamina() => PlayerModel.MaxStamina;
     public int GetCurrentStamina() => PlayerModel.CurrentStamina;
+    public int GetGold() => PlayerModel.Gold;
 
     public PlayerPresenter(PlayerView playerView, PlayerModel playerModel)
     {
@@ -37,9 +38,25 @@ public class PlayerPresenter
     {
         PlayerModel.SetIsHit(isHit);
     }
+
+
+    public void ChangeDamage(int damage)
+    {
+        PlayerModel.SetDamage(damage);
+    }
+    public void ChangeMaxHP(int hp)
+    {
+        PlayerModel.SetMaxHP(hp);
+    }
+    public void ChangeMaxStamina(int stamina)
+    {
+        PlayerModel.SetMaxStamina(stamina);
+    }
+
+
     public void ChangeCurrentHP(int damage)
     {
-        PlayerModel.SetHP(-damage);
+        PlayerModel.SetHP(damage);
     }
     public void ChangeCurrentMP(int mp)
     {
@@ -49,6 +66,13 @@ public class PlayerPresenter
     {
         PlayerModel.SetStamina(stamina);
     }
+
+    public void ChangeGold(int gold)
+    {
+        PlayerModel.SetGold(gold);
+    }
+
+
     public void InitPlayerStats()
     {
         PlayerModel.InitStats();
@@ -62,4 +86,6 @@ public class PlayerPresenter
             PlayerModel.SetStamina(Rezen);
         }
     }
+
+    
 }

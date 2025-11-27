@@ -5,7 +5,7 @@ public class StageSelectButton : MonoBehaviour
 {
     private Button _button;
 
-    [SerializeField] private Button[] _stageButtons;
+    [SerializeField] private Transform[] _SelectUIs;
 
     private void Awake()
     {
@@ -16,17 +16,7 @@ public class StageSelectButton : MonoBehaviour
     {
         _button.onClick.AddListener(
             () =>{
-                foreach (var button in transform.parent.GetComponentsInChildren<Button>())
-                {
-                    if (button.TryGetComponent<MenuCloseButton>(out var temp))
-                        continue;
-                    button.gameObject.SetActive(false);
-                }
-                foreach (var button in _stageButtons)
-                {
-                    button.gameObject.SetActive(true);
-                }
-            }
-            );
+                GameManager.Instance.EnableUI(_button.transform.parent, _SelectUIs);
+            });
     }
 }

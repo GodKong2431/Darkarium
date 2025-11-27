@@ -10,9 +10,7 @@ public enum TileType
 
 public class DungeonGenerator : MonoBehaviour
 {
-    [Header("Map Size")]
-    [SerializeField] private int _width = 100;
-    [SerializeField] private int _height = 100;
+    
 
     [Header("Cellular Automata")]
     [SerializeField] private int _fillPercent;
@@ -27,11 +25,25 @@ public class DungeonGenerator : MonoBehaviour
     [SerializeField] private TileBase _wallTile;
     [SerializeField] private TileBase _floorTile;
 
+    [SerializeField] private StageInfoSO _stageInfoSO;
+
+    private int _width;
+    private int _height;
+
     public DungeonData map;
 
     void Awake()
     {
+        _width = _stageInfoSO.map.size;
+        _height = _stageInfoSO.map.size;
         GenerateDungeon();
+        
+
+        List<Vector2Int> roomTiles = map.Rooms[Random.Range(0, map.Rooms.Count)];
+
+        Vector2Int tile = roomTiles[Random.Range(0, roomTiles.Count)];
+        PlayerSystems.Player.PlayerView.transform.position = new Vector3(tile.x + 0.5f, tile.y + 0.5f, 0);
+
     }
     
     public void GenerateDungeon()

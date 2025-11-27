@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerView : MonoBehaviour
+public class PlayerView : SingleTon<PlayerView>
 {
     
 
@@ -13,24 +13,29 @@ public class PlayerView : MonoBehaviour
     [Header("Player Stats")]
     [SerializeField] private float _rezenStaminaRate = 3f;
 
+
+
     private PlayerPresenter _playerPresenter;
     private InputAction _move;
     private InputAction _attack;
     private Rigidbody2D _playerRigid;
     public Vector2 MoveInput {  get; private set; }
     private Animator _anim;
+    public Animator Anim
+    {
+        get { return _anim; }
+    }
     private Coroutine _hitCoroutine = null;
 
     private WaitForSeconds _staminaRezenWait => new WaitForSeconds(_rezenStaminaRate);
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _playerPresenter = new PlayerPresenter(this, new PlayerModel());
         ActionInit();
         ComponentInit();
         _attackColliderObj.SetActive(false);
-
-        DontDestroyOnLoad(gameObject);
     }
     private void Start()
     {

@@ -5,13 +5,5 @@ public enum EventType
     PlayerHPChanged,
     PlayerMPChanged,
     PlayerStaminaChanged,
-
-    PlayerDied,
-    EnemyDied,
-
-    AttackStarted,
-    AttackEnded,
-
-    OnSceneLoaded,
-    OnInteraction,
+    PlayerGoldChanged
 }

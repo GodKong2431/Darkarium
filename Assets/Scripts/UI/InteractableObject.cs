@@ -10,14 +10,7 @@ public class OpenMenuInteractable : MonoBehaviour, IInteractable
     public void OnInteract()
     {
         menuUI.SetActive(true);
-        foreach (Transform child in menuUI.transform)
-        {
-            child.gameObject.SetActive(false);
-        }
-        foreach (Transform button in _defaultButtons)
-        {
-            button.gameObject.SetActive(true);
-        }
+        GameManager.Instance.EnableUI(menuUI.transform, _defaultButtons);
         InputSystem.actions.FindActionMap("Player").Disable();
     }
 }

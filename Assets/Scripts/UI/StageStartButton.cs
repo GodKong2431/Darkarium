@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class StageSelcetButton : MonoBehaviour
+public class StageStartButton : MonoBehaviour
 {
     private Button _button;
 
@@ -13,7 +14,9 @@ public class StageSelcetButton : MonoBehaviour
     private void OnEnable()
     {
         _button.onClick.AddListener(
-            () => {
+            () =>
+            {
+                InputSystem.actions.FindActionMap("Player").Enable();
                 SceneChanger.SceneLoad(SceneType.Map);
             });
     }

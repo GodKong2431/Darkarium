@@ -66,6 +66,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(_camera == null) _camera = Camera.main;
         Vector3 screenPos = _camera.WorldToScreenPoint(transform.position + _offset);
 
         _interactUI.transform.position = screenPos;
