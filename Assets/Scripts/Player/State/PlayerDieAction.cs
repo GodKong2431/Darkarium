@@ -1,7 +1,6 @@
 using System;
 using Unity.Behavior;
 using Unity.Properties;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Action = Unity.Behavior.Action;

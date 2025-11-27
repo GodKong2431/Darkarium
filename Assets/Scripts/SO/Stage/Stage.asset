@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpawnWaveSO
   spawn:
     monster: {fileID: 11400000, guid: 752a4d66c5b940440a4f155870efb8c8, type: 2}
-    count: 200
-    delay: 2
+    count: 9
+    delay: 3
   map:
-    size: 35
+    size: 40

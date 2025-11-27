@@ -12,24 +12,29 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        _openMenu = InputSystem.actions["OpenMenu"];
+        if(_openMenu == null)
+        {
+            _openMenu = InputSystem.actions["OpenMenu"];
+        }
     }
 
     private void OnEnable()
     {
-        _openMenu.started += ctx =>
-        {
-            if (GameManager.Instance.CurrentCanvas == _menuCanvas || GameManager.Instance.CurrentCanvas == null)
-            {
-                _isMenuOpen = !_isMenuOpen;
-                OpenMenu();
-            }
-        };
+        _openMenu.started += OnOpenMenu;
     }
 
     private void OnDisable()
     {
-        _openMenu.Disable();
+        _openMenu.started -= OnOpenMenu;
+    }
+
+    private void OnOpenMenu(InputAction.CallbackContext ctx)
+    {
+        if (GameManager.Instance.CurrentCanvas == _menuCanvas || GameManager.Instance.CurrentCanvas == null)
+        {
+            _isMenuOpen = !_isMenuOpen;
+            OpenMenu();
+        }
     }
 
     private void OpenMenu()
@@ -38,13 +43,13 @@ public class MenuManager : MonoBehaviour
         {
             GameManager.Instance.SetTimeScale(0f);
             GameManager.Instance.SetCurrentCanvas(_menuCanvas);
-            _menuCanvas.gameObject.SetActive(_isMenuOpen);
+            _menuCanvas.gameObject.SetActive(true);
         }
         else
         {
             GameManager.Instance.SetTimeScale(1f);
             GameManager.Instance.SetCurrentCanvas(null);
-            _menuCanvas.gameObject.SetActive(_isMenuOpen);
+            _menuCanvas.gameObject.SetActive(false);
         }  
     }
 }

@@ -58,11 +58,11 @@ public class PlayerModel
 
     public void InitStats()
     {
-        MaxHP = GameManager.Instance._gameData.maxHP;
-        MaxMP = GameManager.Instance._gameData.maxMP;
-        MaxStamina = GameManager.Instance._gameData.maxStamina;
-        Gold = GameManager.Instance._gameData.playerGold;
-        Damage = GameManager.Instance._gameData.PlayerDamage;
+        MaxHP = GameManager.Instance.GameData.maxHP;
+        MaxMP = GameManager.Instance.GameData.maxMP;
+        MaxStamina = GameManager.Instance.GameData.maxStamina;
+        Gold = GameManager.Instance.GameData.playerGold;
+        Damage = GameManager.Instance.GameData.PlayerDamage;
         CurrentHP = MaxHP;
         CurrentMP = MaxMP;
         CurrentStamina = MaxStamina;
@@ -98,28 +98,28 @@ public class PlayerModel
     {
         MaxHP += hp;
         CurrentHP = MaxHP;
-        GameManager.Instance._gameData.maxHP = MaxHP;
+        GameManager.Instance.GameData.maxHP = MaxHP;
     }
     public void SetMaxMP(int mp)
     {
         MaxMP += mp;
         CurrentMP = MaxMP;
-        GameManager.Instance._gameData.maxMP = MaxMP;
+        GameManager.Instance.GameData.maxMP = MaxMP;
     }
     public void SetMaxStamina(int stamina)
     {
         MaxStamina += stamina;
         CurrentStamina = MaxStamina;
-        GameManager.Instance._gameData.maxStamina = MaxStamina;
+        GameManager.Instance.GameData.maxStamina = MaxStamina;
     }
     public void SetDamage(int damage)
     {
         Damage += damage;
-        GameManager.Instance._gameData.PlayerDamage = Damage;
+        GameManager.Instance.GameData.PlayerDamage = Damage;
     }
     public void SetGold(int gold)
     {
         Gold += gold;
-        GameManager.Instance._gameData.playerGold = Gold;
+        GameManager.Instance.GameData.playerGold = Gold;
     }
 }

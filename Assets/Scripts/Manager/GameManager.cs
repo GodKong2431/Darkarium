@@ -8,13 +8,15 @@ public class GameManager : SingleTon<GameManager>
     public Canvas CurrentCanvas { get; private set; } = null;
     [SerializeField] public GameObject Player;
 
-    public GameData _gameData { get; private set; }
+    public GameData GameData { get; private set; }
     private int _aliveMonsterCount = 0;
+
+    public bool IsSpawning {  get; set; }
 
     protected override void Awake()
     {
         base.Awake();
-        _gameData = GameDataManager.Load();
+        GameData = GameDataManager.Load();
     }
 
     public void SetTimeScale(float newTimeScale)
@@ -80,17 +82,18 @@ public class GameManager : SingleTon<GameManager>
     public void EnemyDie()
     {
         _aliveMonsterCount -= 1;
-        if (_aliveMonsterCount == 0)
+        if (_aliveMonsterCount <= 0 && !IsSpawning)
         {
+            _aliveMonsterCount = 0;
             Invoke("Victory", 5);
         }
     }
     private void OnDisable()
     {
-        GameDataManager.Save(_gameData);
+        GameDataManager.Save(GameData);
     }
     private void OnApplicationQuit()
     {
-        GameDataManager.Save(_gameData);
+        GameDataManager.Save(GameData);
     }
 }

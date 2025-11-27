@@ -21,6 +21,13 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(_startDelay);
 
+        GameManager.Instance.IsSpawning = true;
+
+        if(_stageInfo.spawn.count == 0)
+        {
+            GameManager.Instance.IsSpawning = false;
+            GameManager.Instance.EnemyDie();
+        }
 
         for (int i = 0; i < _stageInfo.spawn.count; i++)
         {
@@ -28,6 +35,8 @@ public class EnemySpawner : MonoBehaviour
             GameManager.Instance.EnemySpawn();
             yield return new WaitForSeconds(_stageInfo.spawn.delay);
         }
+
+        GameManager.Instance.IsSpawning = false;
     }
 
     private void SpawnEnemy(MonsterSO monster)
