@@ -93,20 +93,28 @@ public class PlayerModel
     {
         MaxHP += hp;
         CurrentHP = MaxHP;
+        GameManager.Instance._gameData.maxHP = MaxHP;
+    }
+    public void SetMaxMP(int mp)
+    {
+        MaxMP += mp;
+        CurrentMP = MaxMP;
+        GameManager.Instance._gameData.maxMP = MaxMP;
     }
     public void SetMaxStamina(int stamina)
     {
         MaxStamina += stamina;
         CurrentStamina = MaxStamina;
+        GameManager.Instance._gameData.maxStamina = MaxStamina;
     }
     public void SetDamage(int damage)
     {
         Damage += damage;
+        GameManager.Instance._gameData.PlayerDamage = Damage;
     }
-
-
     public void SetGold(int gold)
     {
         Gold += gold;
+        GameManager.Instance._gameData.playerGold = Gold;
     }
 }

@@ -8,7 +8,14 @@ public class GameManager : SingleTon<GameManager>
     public Canvas CurrentCanvas { get; private set; } = null;
     [SerializeField] public GameObject Player;
 
+    public GameData _gameData { get; private set; }
     private int _aliveMonsterCount = 0;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _gameData = GameDataManager.Load();
+    }
 
     public void SetTimeScale(float newTimeScale)
     {
@@ -77,5 +84,10 @@ public class GameManager : SingleTon<GameManager>
         {
             Invoke("Victory", 5);
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        GameDataManager.Save(_gameData);
     }
 }

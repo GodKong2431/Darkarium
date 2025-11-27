@@ -10,7 +10,7 @@ public class ExitGameButton : MonoBehaviour
         _button = GetComponent<Button>();
     }
 
-    private void Enable()
+    private void OnEnable()
     {
         _button.onClick.AddListener(
             () =>

@@ -4,16 +4,17 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int playerGold;
-    public int maxHP;
-    public int maxMP;
-    public int maxStamina;
-    public int PlayerDamage;
+    public int playerGold = 100;
+    public int maxHP = 100;
+    public int maxMP = 100;
+    public int maxStamina = 100;
+    public int PlayerDamage = 20;
 }
 
 public static class GameDataManager
 {
-    private static string savePath = Application.persistentDataPath + "/save.json";
+    //윈도우 저장 파일 경로 이름
+    private static string savePath = Application.persistentDataPath + "/savedata.json";
 
     public static void Save(GameData data)
     {
