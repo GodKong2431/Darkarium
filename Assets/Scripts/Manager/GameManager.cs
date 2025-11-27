@@ -85,7 +85,10 @@ public class GameManager : SingleTon<GameManager>
             Invoke("Victory", 5);
         }
     }
-
+    private void OnDisable()
+    {
+        GameDataManager.Save(_gameData);
+    }
     private void OnApplicationQuit()
     {
         GameDataManager.Save(_gameData);

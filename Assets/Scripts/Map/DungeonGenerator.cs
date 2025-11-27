@@ -34,12 +34,15 @@ public class DungeonGenerator : MonoBehaviour
 
     void Awake()
     {
+        if (_stageInfoSO.map.size <= 40)
+            _stageInfoSO.map.size = 40;
         _width = _stageInfoSO.map.size;
         _height = _stageInfoSO.map.size;
         GenerateDungeon();
         
 
         List<Vector2Int> roomTiles = map.Rooms[Random.Range(0, map.Rooms.Count)];
+        if (roomTiles.Count <= 0) return;
 
         Vector2Int tile = roomTiles[Random.Range(0, roomTiles.Count)];
         PlayerSystems.Player.PlayerView.transform.position = new Vector3(tile.x + 0.5f, tile.y + 0.5f, 0);

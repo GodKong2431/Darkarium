@@ -58,6 +58,11 @@ public class PlayerModel
 
     public void InitStats()
     {
+        MaxHP = GameManager.Instance._gameData.maxHP;
+        MaxMP = GameManager.Instance._gameData.maxMP;
+        MaxStamina = GameManager.Instance._gameData.maxStamina;
+        Gold = GameManager.Instance._gameData.playerGold;
+        Damage = GameManager.Instance._gameData.PlayerDamage;
         CurrentHP = MaxHP;
         CurrentMP = MaxMP;
         CurrentStamina = MaxStamina;
